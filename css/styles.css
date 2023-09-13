@@ -148,7 +148,7 @@ table{
   text-align: center;
 }
 thead{
-  background-color: #3886A2;
+ background-color: #3886A2;
 }
 th{
   padding: 20px 15px;
@@ -171,5 +171,5 @@ tbody tr:hover{
 }
 
 .pantalla-juego{
-  background-color: rgb(36, 73, 129);
+ background-color: rgb(36, 73, 129);
 }
