@@ -140,6 +140,23 @@ if(tecla=='j'||tecla=='J'){
 });
 
 
+function Modelos3D(){
+const loaderAnakin = new OBJLoader(manager);
+  var mtlAnakin = new MTLLoader(manager);
+ 
+mtlAnakin.load('models/Anakin.mtl',function (materials){
+  materials.preload();
+  loaderAnakin.setMaterials(materials);
+  loaderAnakin.load('models/Anakin.obj',
+    function ( object ) {
+      object.scale.copy( new THREE.Vector3(10,10,10));
+      scene.add( object );
+    });
+  console.log(materials);
+});
+}
+
+
 function iniciarSesion(){
 
 var formulario = document.getElementById("logeo");
