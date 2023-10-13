@@ -144,8 +144,9 @@ if(tecla=='j'||tecla=='J'){
 
 
 function Modelos3D(){
-const loaderAnakin = new OBJLoader(manager);
-  var mtlAnakin = new MTLLoader(manager);
+
+const loadBarco1 = new OBJLoader(manager);
+  var mtlBarco1 = new MTLLoader(manager);
  
 mtlAnakin.load('models/Anakin.mtl',function (materials){
   materials.preload();
