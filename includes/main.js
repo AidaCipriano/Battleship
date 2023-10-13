@@ -148,10 +148,10 @@ function Modelos3D(){
 const loadBarco1 = new OBJLoader(manager);
   var mtlBarco1 = new MTLLoader(manager);
  
-mtlAnakin.load('models/Anakin.mtl',function (materials){
+mtlBarco1.load('models/Barco1.mtl',function (materials){
   materials.preload();
   loaderAnakin.setMaterials(materials);
-  loaderAnakin.load('models/Anakin.obj',
+  loaderAnakin.load('models/Barco1.obj',
     function ( object ) {
       object.scale.copy( new THREE.Vector3(10,10,10));
       scene.add( object );
