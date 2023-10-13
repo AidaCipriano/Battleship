@@ -1,4 +1,8 @@
+<?php
 
+include("paginas/controladores/registrate.php");
+
+?>
 
 
 <!DOCTYPE html>
@@ -8,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+
     <title>Registro</title>
 </head>
 <body class="gif">
@@ -38,19 +43,22 @@
                     <!--button type="submit" class="btn btn-primary">Iniciar Sesión</button-->
                     <div class="espacio_Boton">
                          <!--<button class="btn btn-primary" type="submit"  value="Enviar" name="register">Registrate</button>-->
-                        <input class="btn btn-primary" type="submit" name="register" value="Enviar">
+                        <input class="btn btn-primary"  onclick="btn_guardar_dato();"  value="Enviar">
+                        <p></p>
+                        <input class="btn btn-primary"  type="submit"  name="register" id="btnregister" value="Enviar">
                          <p class="warnings" id="warnings"></p>
                     </div> 
                     </div>
                     
                 </form>
-           <!--<a href="./menuinicial.html"> 
-                    <button class="btn btn-primary">Registrate</button>
-                </a>-->
+                <p class="mt-3">¿No tienes una cuenta? <a href="paginas/iniciosesion.php">Inicia Sesion</a></p>
             </div>
         </div>
     </div>
 </body>
+
 <script src="js/registro.js"></script>
+<script src="js/jquery.min.js"></script>
 
 </html>
+                  
