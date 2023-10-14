@@ -1,11 +1,18 @@
+<?php
+  session_start();
+  include 'controladores/conexion.php';
+  $user = $_SESSION['user_id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Configuración</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body class="gif">
     <div  class="container d-flex justify-content-center align-items-center h-100 divdiv containertres fondodos">
@@ -21,16 +28,16 @@
             </div>                       
 
             <div style="text-align:center">
-                <a href="./pantalladeljuego.html"><button type="button" id="saveButton" class="btn btn-primary button2">Guardar Configuración</button></a>
+                <a href="pantalladeljuego.php"><button type="button" id="saveButton" class="btn btn-primary button2">Guardar Configuración</button></a>
                 &nbsp;&nbsp;
-               <a href="./iniciodesesion.html"> <button type="button" id="logoutButton" class="btn btn-primary button3">Salir</button></a>
+               <a href="iniciodesesion.php"> <button type="button" id="logoutButton" class="btn btn-primary button3">Salir</button></a>
             </div>
         </form>
     </div>  
     </div>
     
 
-    <script src="includes/xcript_config.js"></script>
-    <script src="./includes/script.js"></script>
+    <script src="../includes/xcript_config.js"></script>
+    <script src="../includes/script.js"></script>
 </body>
 </html>
