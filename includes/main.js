@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -11,7 +13,29 @@ const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
+
+
+Modelos3D();
 /*****************************************************************************/
+
+
+const manager = new THREE.LoadingManager();
+manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+  console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+};
+ 
+manager.onLoad = function ( ) {
+  console.log( 'Loading complete!');
+};
+ 
+manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+  console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+};
+ 
+manager.onError = function ( url ) {
+  console.log( 'There was an error loading ' + url );
+};
+
 
 const cube2 = cube.clone();
 
@@ -117,6 +141,24 @@ if(tecla=='j'||tecla=='J'){
 
  });
 });
+
+
+function Modelos3D(){
+
+const loadBarco1 = new OBJLoader(manager);
+  var mtlBarco1 = new MTLLoader(manager);
+ 
+mtlBarco1.load('models/Barco1.mtl',function (materials){
+  materials.preload();
+  loaderAnakin.setMaterials(materials);
+  loaderAnakin.load('models/Barco1.obj',
+    function ( object ) {
+      object.scale.copy( new THREE.Vector3(10,10,10));
+      scene.add( object );
+    });
+  console.log(materials);
+});
+}
 
 
 function iniciarSesion(){
