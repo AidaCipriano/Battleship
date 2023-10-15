@@ -173,3 +173,8 @@ tbody tr:hover{
 .pantalla-juego{
  background-color: rgb(36, 73, 129);
 }
+
+
+#btnregister {
+  display: none;
+}
