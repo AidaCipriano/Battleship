@@ -17,7 +17,7 @@ if(isset($_POST['register'])){
        //                 VALUES('$idsuario', '$email', '$username', '$password')";
         $resultado = mysqli_query($conexion, $consulta);
         if($resultado){
-          header("location:paginas/iniciodesesion.php");
+          header("location:paginas/iniciosesion.php");
         }
         else{
             echo('Error');
