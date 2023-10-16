@@ -158,6 +158,54 @@ mtlBarco1.load('models/Barco1.mtl',function (materials){
     });
   console.log(materials);
 });
+
+
+const loadBarco2 = new OBJLoader(manager);
+  var mtlBarco2 = new MTLLoader(manager);
+ 
+
+mtlBarco2.load('models/Barco2.mtl',function (materials){
+	  materials.preload();
+	  loaderAnakin.setMaterials(materials);
+	  loaderAnakin.load('models/Barco2.obj',
+	    function ( object ) {
+		  object.scale.copy( new THREE.Vector3(10,10,10));
+	      scene.add( object );
+	    });
+	  console.log(materials);
+	});
+
+
+const loadBarco3 = new OBJLoader(manager);
+  var mtlBarco3 = new MTLLoader(manager);
+ 
+
+mtlBarco3.load('models/Barco3.mtl',function (materials){
+	  materials.preload();
+	  loaderAnakin.setMaterials(materials);
+	  loaderAnakin.load('models/Barco3.obj',
+	    function ( object ) {
+		  object.scale.copy( new THREE.Vector3(10,10,10));
+	      scene.add( object );
+	    });
+	  console.log(materials);
+	});
+
+
+	const loadBarco4 = new OBJLoader(manager);
+  var mtlBarco4 = new MTLLoader(manager);
+ 
+
+mtlBarco4.load('models/Barco4.mtl',function (materials){
+	  materials.preload();
+	  loaderAnakin.setMaterials(materials);
+	  loaderAnakin.load('models/Barco4.obj',
+	    function ( object ) {
+		  object.scale.copy( new THREE.Vector3(10,10,10));
+	      scene.add( object );
+	    });
+	  console.log(materials);
+	});
 }
 
 

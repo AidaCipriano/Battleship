@@ -1,7 +1,7 @@
 <?php
-  session_start();
-  include 'controladores/conexion.php';
-  $user = $_SESSION['user_id'];
+ // session_start();
+ // include 'controladores/conexion.php';
+ // $user = $_SESSION['user_id'];
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
 
       <ul class="nav col-12 col-lg-auto  mb-md-0">
             <li>
-              <a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><?php echo( $user ); ?> </a>
+            <a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><?php echo( $user ); ?> </a>
               <ul class="dropdown-menu dropdown-menu-dark ">
               <li><a class="dropdown-item" href="menu_config.php">Configuracion</a></li>
               <li><a class="dropdown-item" href="menu_pausa.php">Pausa</a></li>
@@ -54,12 +54,12 @@
 
   </header>
 
-  <body class="pantalla-juego">
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script type="module" src="../includes/main.js"></script>
 
-  </body>
+ 
 </main>
 <script src="../includes/script.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>

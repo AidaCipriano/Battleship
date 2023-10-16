@@ -1,6 +1,6 @@
 <?php
    
-   $conexion = mysqli_connect("localhost", "root", "", "battleship");
+   $conexion = mysqli_connect("localhost", "root", "saraiEM1", "battleship");
    
    /*
     class Conexion{

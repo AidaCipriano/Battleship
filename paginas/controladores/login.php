@@ -4,9 +4,9 @@
 	error_reporting(0);
 
 	
-	/*if (isset($_SESSION['user_id'])) {
+	if (isset($_SESSION['user_id'])) {
 	header('location:../pantalladeljuego.php');
-	}*/
+	}
 
 	require 'conexion.php';
 
@@ -36,7 +36,7 @@
     }
 
 }
-/*
+
 require 'conexion.php';
 
 if(isset($_POST['login'])) {
@@ -56,5 +56,5 @@ $numero_registros = mysqli_num_rows($resultado);
 		echo "Credenciales inválidas. Por favor, verifica tu nombre de usuario y/o contraseña."."<br>";
 		echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
 	}
-}*/
+}
 ?>
