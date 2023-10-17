@@ -7,8 +7,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.min.js"></script>-->
+
+
+
+
+
+
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Videojuego</title>
@@ -31,15 +38,19 @@
   }
 </script>
 </head>
+
+
+<body>
+
 <main>
-  <header class="py-3 mb-3 header-pantallajuego border-bottom">
+<header class="py-3  header-pantallajuego border-bottom">
     <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
 
 
 
       <ul class="nav col-12 col-lg-auto  mb-md-0">
             <li>
-            <a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><?php echo( $user ); ?> </a>
+              <a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> </a>
               <ul class="dropdown-menu dropdown-menu-dark ">
               <li><a class="dropdown-item" href="menu_config.php">Configuracion</a></li>
               <li><a class="dropdown-item" href="menu_pausa.php">Pausa</a></li>
@@ -54,14 +65,24 @@
 
   </header>
 
-
+  <body class="pantalla-juego">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		<script type="module" src="../includes/main.js"></script>
+		<script type="module" src="./../includes/main.js"></script>
 
+  </body>
+   
+    
  
 </main>
+
+		
 <script src="../includes/script.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
-
+</body>
 </html>
+
+
+
+
+

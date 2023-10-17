@@ -17,7 +17,7 @@ if(isset($_POST['register'])){
         $consulta = "CALL sp_Registro('$idsuario', '$email', '$username', '$password')";
        // $consulta = "INSERT INTO usuario(id_usuario, email, nombreusuario, contrasena)
        //                 VALUES('$idsuario', '$email', '$username', '$password')";
-        $resultado = mysqli_query($con, $consulta);
+        $resultado = mysqli_query($conexion, $consulta);
         if($resultado){
           header("location:paginas/iniciosesion.php");
         }
