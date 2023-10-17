@@ -140,11 +140,11 @@ function Barco2(){
 
 function Barco3(){
     const loaderBarco = new OBJLoader(manager);
-    var mtlBarco = new MTLLoader(manager);
+   // var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('../models/barco3/Barco3.mtl',function (materials){
-        materials.preload();
-        loaderBarco.setMaterials(materials);
+    //mtlBarco.load('models/barco3/Barco3.mtl',function (materials){
+        //materials.preload();
+      //  loaderBarco.setMaterials(materials);
         loaderBarco.load('../models/barco3/Barco3.obj',
         
         function ( object ){
@@ -153,8 +153,8 @@ function Barco3(){
             scene.add( object );
 
         });
-        console.log(materials);
-    });
+       // console.log(materials);
+   // });
 }
 
 function Barco4(){
