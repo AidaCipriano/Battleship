@@ -103,10 +103,10 @@ function Modelos3D(){
     const loaderBarco = new OBJLoader(manager);
     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('./models/barco2/barco.mtl',function (materials){
+    mtlBarco.load('../models/barco2/barco.mtl',function (materials){
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('./models/barco2/barco.obj',
+        loaderBarco.load('../models/barco2/barco.obj',
         
         function ( object ){
             object.scale.copy( new THREE.Vector3(0.001,0.001,0.001));
@@ -123,10 +123,10 @@ function Barco2(){
     const loaderBarco = new OBJLoader(manager);
     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('models/barco1/Barco1.mtl',function (materials){
+    mtlBarco.load('../models/barco1/Barco1.mtl',function (materials){
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('models/barco1/Barco1.obj',
+        loaderBarco.load('../models/barco1/Barco1.obj',
         
         function ( object ){
             object.scale.copy( new THREE.Vector3(0.01,0.01,0.01));
@@ -142,10 +142,10 @@ function Barco3(){
     const loaderBarco = new OBJLoader(manager);
     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('models/barco3/Barco3.mtl',function (materials){
+    mtlBarco.load('../models/barco3/Barco3.mtl',function (materials){
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('models/barco3/Barco3.obj',
+        loaderBarco.load('../models/barco3/Barco3.obj',
         
         function ( object ){
             object.scale.copy( new THREE.Vector3(0.1,0.1,0.1));
@@ -161,10 +161,10 @@ function Barco4(){
     const loaderBarco = new OBJLoader(manager);
     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('models/barco4/Barco4.mtl',function (materials){
+    mtlBarco.load('../models/barco4/Barco4.mtl',function (materials){
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('models/barco4/Barco4.obj',
+        loaderBarco.load('../models/barco4/Barco4.obj',
         
         function ( object ){
             object.scale.copy( new THREE.Vector3(1,1,1));
@@ -180,10 +180,10 @@ function Barco5(){
     const loaderBarco = new OBJLoader(manager);
     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('models/barco5/submarino.mtl',function (materials){
+    mtlBarco.load('../models/barco5/submarino.mtl',function (materials){
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('models/barco5/submarino.obj',
+        loaderBarco.load('../models/barco5/submarino.obj',
         
         function ( object ){
             object.scale.copy( new THREE.Vector3(0.7,0.7,0.7));
