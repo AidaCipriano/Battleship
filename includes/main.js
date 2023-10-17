@@ -97,23 +97,56 @@ function animate() {
 	renderer.render( scene, camera );
 }
 
+//***************************************//
+// REPRESENTAR POSICION ACTUAL DE Modelos3D//
+
+const modelos3DPosition = {
+    x: 1,
+    y: 1,
+    z: 0
+};
+// REPRESENTAR POSICION ACTUAL DEL BARCO2//
+const barco2Position = {
+    x: 3,
+    y: 0,
+    z: 0
+};
+//***************************************//
+
 animate();
 
-function Modelos3D(){
+function Modelos3D() {
     const loaderBarco = new OBJLoader(manager);
     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('../models/barco2/barco.mtl',function (materials){
+    mtlBarco.load('../models/barco2/barco.mtl', function (materials) {
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('../models/barco2/barco.obj',
-        
-        function ( object ){
-            object.scale.copy( new THREE.Vector3(0.001,0.001,0.001));
-            object.position.set(1, 1, 0);
-            object.rotation.x = ((Math.PI / 2)*-1);
-            scene.add( object );
+        loaderBarco.load('../models/barco2/barco.obj', function (object) {
+            object.scale.copy(new THREE.Vector3(0.001, 0.001, 0.001));
+            object.position.set(modelos3DPosition.x, modelos3DPosition.y, modelos3DPosition.z);
+            object.rotation.x = ((Math.PI / 2) * -1);
+            scene.add(object);
 
+            // Escuchar eventos de teclado para mover "Modelos3D"
+            document.addEventListener('keydown', (event) => {
+                switch (event.key) {
+                    case 'w':
+                        modelos3DPosition.z -= 0.1; // Mover hacia adelante
+                        break;
+                    case 'a':
+                        modelos3DPosition.z += 0.1; // Mover hacia atrás
+                        break;
+                    case 's':
+                        modelos3DPosition.x -= 0.1; // Mover hacia la izquierda
+                        break;
+                    case 'd':
+                        modelos3DPosition.x += 0.1; // Mover hacia la derecha
+                        break;
+                }
+                // Actualizar la posición del modelo
+                object.position.set(modelos3DPosition.x, modelos3DPosition.y, modelos3DPosition.z);
+            });
         });
         console.log(materials);
     });
@@ -126,18 +159,34 @@ function Barco2(){
     mtlBarco.load('../models/barco1/Barco1.mtl',function (materials){
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('../models/barco1/Barco1.obj',
-        
-        function ( object ){
+        loaderBarco.load('../models/barco1/Barco1.obj', function (object) {
             object.scale.copy( new THREE.Vector3(0.01,0.01,0.01));
-            object.position.set(3, 0, 0);
+            object.position.set(barco2Position.x, barco2Position.y, barco2Position.z);
             scene.add( object );
 
+            // Escuchar eventos de teclado para mover "Barco2"
+            document.addEventListener('keydown', (event) => {
+                switch (event.key) {
+                    case 'ArrowUp':
+                        barco2Position.z -= 0.1; // Mover hacia adelante
+                        break;
+                    case 'ArrowDown':
+                        barco2Position.z += 0.1; // Mover hacia atrás
+                        break;
+                    case 'ArrowLeft':
+                        barco2Position.x -= 0.1; // Mover hacia la izquierda
+                        break;
+                    case 'ArrowRight':
+                        barco2Position.x += 0.1; // Mover hacia la derecha
+                        break;
+                }
+                // Actualizar la posición del modelo
+                object.position.set(barco2Position.x, barco2Position.y, barco2Position.z);
+            });
         });
         console.log(materials);
     });
 }
-
 function Barco3(){
     const loaderBarco = new OBJLoader(manager);
    // var mtlBarco = new MTLLoader(manager);
@@ -148,7 +197,7 @@ function Barco3(){
         loaderBarco.load('../models/barco3/Barco3.obj',
         
         function ( object ){
-            object.scale.copy( new THREE.Vector3(0.1,0.1,0.1));
+            object.scale.copy( new THREE.Vector3(0.001,0.001,0.001));
             object.position.set(-3, 0, 0);
             scene.add( object );
 
@@ -156,7 +205,6 @@ function Barco3(){
        // console.log(materials);
    // });
 }
-
 function Barco4(){
     const loaderBarco = new OBJLoader(manager);
     var mtlBarco = new MTLLoader(manager);
