@@ -77,6 +77,8 @@ const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
+
+
 const geometry_2 = new THREE.BoxGeometry(1, 1, 1);
 const material_2 = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
 const cube_2 = new THREE.Mesh(geometry_2, material_2);
@@ -173,7 +175,7 @@ const barco2Position = {
 
 
 animate();
-function init();
+
 
 function Modelos3D() {
     const loaderBarco = new OBJLoader(manager);
