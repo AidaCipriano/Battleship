@@ -100,43 +100,46 @@ Modelos3D();
 function detectCollision() {
     if (Modelos3dBB.intersectsBox(cube2BB)) {
         console.log('Colisión detectada entre Modelos3D y cube2');
-        // Realiza otras acciones si es necesario
+        objModelos3d.position.x += 0.1;
+        
     }
-    // Realiza verificaciones similares para otros objetos en tu escena
+
 }
 
 function init() {
-
-    // Escuchar eventos de teclado para mover "cube2"
+    // Escuchar eventos de teclado para mover "Modelos3D"
     document.addEventListener('keydown', (event) => {
         switch (event.key) {
-            case 's':
-                cube2.position.z -= 0.1; // Mover hacia adelante
-                break;
             case 'w':
-                cube2.position.z += 0.1; // Mover hacia atrás
+                modelos3DPosition.z -= 0.1; // Mover hacia adelante
+                break;
+            case 's':
+                modelos3DPosition.z += 0.1; // Mover hacia atrás
                 break;
             case 'a':
-                cube2.position.x -= 0.1; // Mover hacia la izquierda
+                modelos3DPosition.x -= 0.1; // Mover hacia la izquierda
                 break;
             case 'd':
-                cube2.position.x += 0.1; // Mover hacia la derecha
+                modelos3DPosition.x += 0.1; // Mover hacia la derecha
                 break;
         }
-        // Actualizar la posición de "cube2"
-        cube2BB.setFromObject(cube2);
+
+        // Actualizar la posición del modelo
+        objModelos3d.position.set(modelos3DPosition.x, modelos3DPosition.y, modelos3DPosition.z);
+        Modelos3dBB.setFromObject(objModelos3d); // Actualiza el BoundingBox del modelo
+
         // Luego, puedes llamar a detectCollision() para verificar colisiones
         detectCollision();
     });
 }
 
-var isMovingUp = true;
-var maxY = 1; // Maximum vertical position
-var minY = -3; // Minimum vertical position
+//var isMovingUp = true;
+//var maxY = 1; // Maximum vertical position
+//var minY = -3; // Minimum vertical position
     
 function animate() {
    
-    if (objModelos3d) {
+    /*if (objModelos3d) {
         if (isMovingUp) {
             objModelos3d.position.y += 0.01;
         } else {
@@ -149,9 +152,8 @@ function animate() {
         } else if (objModelos3d.position.y <= minY) {
             isMovingUp = true;
         }
-
+*/
         Modelos3dBB.setFromObject(objModelos3d);
-    }
         // Actualiza la posición de cube2 para que siga al modelo
         // cube2.position.copy(objModelos3d.position);
     
@@ -178,7 +180,7 @@ function animate() {
 
 // Representar posición actual de Modelos3D
 const modelos3DPosition = {
-    x: 3,
+    x: 4,
     y: 0,
     z: 0
 };
