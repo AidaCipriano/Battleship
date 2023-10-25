@@ -110,16 +110,16 @@ function init() {
     // Escuchar eventos de teclado para mover "cube2"
     document.addEventListener('keydown', (event) => {
         switch (event.key) {
-            case 'e':
+            case 's':
                 cube2.position.z -= 0.1; // Mover hacia adelante
                 break;
-            case 'r':
+            case 'w':
                 cube2.position.z += 0.1; // Mover hacia atrás
                 break;
-            case 'd':
+            case 'a':
                 cube2.position.x -= 0.1; // Mover hacia la izquierda
                 break;
-            case 'f':
+            case 'd':
                 cube2.position.x += 0.1; // Mover hacia la derecha
                 break;
         }
