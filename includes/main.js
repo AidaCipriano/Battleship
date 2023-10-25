@@ -10,7 +10,7 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 // Variables para el proceso de colisiones
 var objModelos3d;
 let Modelos3dBB;
-Modelos3dBB = new THREE.Box3().setFromObject(objModelos3d);
+Modelos3dBB = new THREE.Box3(); //.setFromObject(objModelos3d);
 var previousModelPosition = new THREE.Vector3();
 
 const renderer = new THREE.WebGLRenderer();
@@ -40,11 +40,10 @@ const loader = new GLTFLoader();
 
 // Crear un cubo para colisiones
 const geometry_cube2 = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-const material_cube2 = new THREE.MeshPhongMaterial({ color: 0x874141 });
-cube2.scale.set(2, 2, 2);
-
+const material_cube2 = new THREE.MeshPhongMaterial({ color: 0x493d80 });
 const cube2 = new THREE.Mesh(geometry_cube2, material_cube2);
-cube2.position.x = 3;
+cube2.scale.set(2, 2, 2);
+cube2.position.x = 3;  //en 3 colisiona 
 cube2.position.y = 0;
 cube2.position.z = 0;
 
@@ -75,6 +74,7 @@ scene.add(light3);
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
 const cube = new THREE.Mesh(geometry, material);
+cube.position.y = 0;
 scene.add(cube);
 
 
@@ -92,10 +92,10 @@ cube_2.position.x = 5;
 ///////////////////////
 
 Modelos3D();
-Barco2();
-Barco3();
-Barco4();
-Barco5();
+ Barco2();
+ Barco3();
+ Barco4();
+ Barco5();
 
 function detectCollision() {
     if (Modelos3dBB.intersectsBox(cube2BB)) {
@@ -130,19 +130,37 @@ function init() {
     });
 }
 
+var isMovingUp = true;
+var maxY = 1; // Maximum vertical position
+var minY = -3; // Minimum vertical position
     
 function animate() {
    
-        requestAnimationFrame(animate);
+    if (objModelos3d) {
+        if (isMovingUp) {
+            objModelos3d.position.y += 0.01;
+        } else {
+            objModelos3d.position.y -= 0.01;
+        }
+
+        
+        if (objModelos3d.position.y >= maxY) {
+            isMovingUp = false;
+        } else if (objModelos3d.position.y <= minY) {
+            isMovingUp = true;
+        }
+
+        Modelos3dBB.setFromObject(objModelos3d);
+    }
         // Actualiza la posición de cube2 para que siga al modelo
-        cube2.position.copy(objModelos3d.position);
+        // cube2.position.copy(objModelos3d.position);
     
         // Verifica la colisión
         detectCollision();
-    requestAnimationFrame(animate);
+    
 
     // Actualiza la posición de cube2 para que siga al modelo
-    cube2.position.copy(objModelos3d.position);
+    // cube2.position.copy(objModelos3d.position);
 
     // Verifica la colisión
     if (Modelos3dBB.intersectsBox(cube2BB)) {
@@ -154,7 +172,7 @@ function animate() {
 
     // Resto del código de animación
     // ...
-
+    requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
 
@@ -174,7 +192,7 @@ const barco2Position = {
 
 
 
-animate();
+// animate();  segun yo va dentro del carga de objeto
 
 
 function Modelos3D() {
@@ -184,60 +202,62 @@ function Modelos3D() {
     mtlBarco.load('../models/barco2/barco.mtl', function (materials) {
         materials.preload();
         loaderBarco.setMaterials(materials);
-        loaderBarco.load('../models/barco2/barco.obj', function (object) {
+        loaderBarco.load('../models/barco2/barco.obj', function  (object) {
             object.scale.copy(new THREE.Vector3(0.001, 0.001, 0.001));
             object.position.set(modelos3DPosition.x, modelos3DPosition.y, modelos3DPosition.z);
             object.rotation.x = ((Math.PI / 2) * -1);
             scene.add(object);
 
             // Escuchar eventos de teclado para mover "Modelos3D"
-            document.addEventListener('keydown', (event) => {
-                switch (event.key) {
-                    case 'w':
-                        modelos3DPosition.z -= 0.1; // Mover hacia adelante
-                        break;
-                    case 'a':
-                        modelos3DPosition.z += 0.1; // Mover hacia atrás
-                        break;
-                    case 's':
-                        modelos3DPosition.x -= 0.1; // Mover hacia la izquierda
-                        break;
-                    case 'd':
-                        modelos3DPosition.x += 0.1; // Mover hacia la derecha
-                        break;
-                }
+            // document.addEventListener('keydown', (event) => {
+            //     switch (event.key) {
+            //         case 'w':
+            //             modelos3DPosition.z -= 0.1; // Mover hacia adelante
+            //             break;
+            //         case 'a':
+            //             modelos3DPosition.z += 0.1; // Mover hacia atrás
+            //             break;
+            //         case 's':
+            //             modelos3DPosition.x -= 0.1; // Mover hacia la izquierda
+            //             break;
+            //         case 'd':
+            //             modelos3DPosition.x += 0.1; // Mover hacia la derecha
+            //             break;
+            //     }
                 // Actualizar la posición del modelo
                 object.position.set(modelos3DPosition.x, modelos3DPosition.y, modelos3DPosition.z);
+                objModelos3d=object;
                 Modelos3dBB.setFromObject(objModelos3d); // Actualiza el BoundingBox del modelo
                 Modelos3dBB = new THREE.Box3().setFromObject(objModelos3d);
-            });
+                animate();
+            // });
         });
         console.log(materials);
     });
 }
 
-function Barco2(){
-    const loaderBarco = new OBJLoader(manager);
-    var mtlBarco = new MTLLoader(manager);
+ function Barco2(){
+     const loaderBarco = new OBJLoader(manager);
+     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('../models/barco1/Barco1.mtl',function (materials){
-        materials.preload();
-        loaderBarco.setMaterials(materials);
-        loaderBarco.load('../models/barco1/Barco1.obj', function (object) {
-            object.scale.copy( new THREE.Vector3(0.01,0.01,0.01));
-            object.position.set(barco2Position.x, barco2Position.y, barco2Position.z);
-            scene.add( object );
+     mtlBarco.load('../models/barco1/Barco1.mtl',function (materials){
+         materials.preload();
+         loaderBarco.setMaterials(materials);
+         loaderBarco.load('../models/barco1/Barco1.obj', function (object) {
+             object.scale.copy( new THREE.Vector3(0.01,0.01,0.01));
+             object.position.set(barco2Position.x, barco2Position.y, barco2Position.z);
+             scene.add( object );
 
-            // Escuchar eventos de teclado para mover "Barco2"
-            document.addEventListener('keydown', (event) => {
-                switch (event.key) {
+             // Escuchar eventos de teclado para mover "Barco2"
+             document.addEventListener('keydown', (event) => {
+              switch (event.key) {
                     case 'ArrowUp':
-                        barco2Position.z -= 0.1; // Mover hacia adelante
-                        break;
-                    case 'ArrowDown':
+                         barco2Position.z -= 0.1; // Mover hacia adelante
+                         break;
+                     case 'ArrowDown':
                         barco2Position.z += 0.1; // Mover hacia atrás
-                        break;
-                    case 'ArrowLeft':
+                         break;
+                     case 'ArrowLeft':
                         barco2Position.x -= 0.1; // Mover hacia la izquierda
                         break;
                     case 'ArrowRight':
@@ -250,59 +270,62 @@ function Barco2(){
         });
         console.log(materials);
     });
-}
-function Barco3(){
-    const loaderBarco = new OBJLoader(manager);
-   // var mtlBarco = new MTLLoader(manager);
+ }
+ function Barco3(){
+     const loaderBarco = new OBJLoader(manager);
+    // var mtlBarco = new MTLLoader(manager);
 
-    //mtlBarco.load('models/barco3/Barco3.mtl',function (materials){
-        //materials.preload();
-      //  loaderBarco.setMaterials(materials);
-        loaderBarco.load('../models/barco3/Barco3.obj',
+     //mtlBarco.load('models/barco3/Barco3.mtl',function (materials){
+         //materials.preload();
+       //  loaderBarco.setMaterials(materials);
+         loaderBarco.load('../models/barco3/Barco3.obj',
         
-        function ( object ){
-            object.scale.copy( new THREE.Vector3(0.001,0.001,0.001));
-            object.position.set(-3, 0, 0);
-            scene.add( object );
+         function ( object ){
+             object.scale.copy( new THREE.Vector3(0.001,0.001,0.001));
+             object.position.set(-3, 0, 0);
+             scene.add( object );
 
-        });
-       // console.log(materials);
-   // });
-}
-function Barco4(){
-    const loaderBarco = new OBJLoader(manager);
-    var mtlBarco = new MTLLoader(manager);
+         });
+        // console.log(materials);
+    // });
+ }
+ function Barco4(){
+     const loaderBarco = new OBJLoader(manager);
+     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('../models/barco4/Barco4.mtl',function (materials){
-        materials.preload();
-        loaderBarco.setMaterials(materials);
-        loaderBarco.load('../models/barco4/Barco4.obj',
+     mtlBarco.load('../models/barco4/Barco4.mtl',function (materials){
+         materials.preload();
+         loaderBarco.setMaterials(materials);
+         loaderBarco.load('../models/barco4/Barco4.obj',
         
-        function ( object ){
-            object.scale.copy( new THREE.Vector3(1,1,1));
-            object.position.set(-5, 2, 0);
-            scene.add( object );
+         function ( object ){
+             object.scale.copy( new THREE.Vector3(1,1,1));
+             object.position.set(-5, 2, 0);
+             scene.add( object );
 
-        });
-        console.log(materials);
-    });
-}
+         });
+         console.log(materials);
+     });
+ }
 
-function Barco5(){
-    const loaderBarco = new OBJLoader(manager);
-    var mtlBarco = new MTLLoader(manager);
+ function Barco5(){
+     const loaderBarco = new OBJLoader(manager);
+     var mtlBarco = new MTLLoader(manager);
 
-    mtlBarco.load('../models/barco5/submarino.mtl',function (materials){
-        materials.preload();
-        loaderBarco.setMaterials(materials);
-        loaderBarco.load('../models/barco5/submarino.obj',
+     mtlBarco.load('../models/barco5/submarino.mtl',function (materials){
+         materials.preload();
+         loaderBarco.setMaterials(materials);
+         loaderBarco.load('../models/barco5/submarino.obj',
         
-        function ( object ){
-            object.scale.copy( new THREE.Vector3(0.7,0.7,0.7));
+         function ( object ){
+             object.scale.copy( new THREE.Vector3(0.7,0.7,0.7));
             object.position.set(1, -1, 0);
-            scene.add( object );
+             scene.add( object );
 
         });
         console.log(materials);
-    });
-}
+     });
+ }
+
+
+init();
