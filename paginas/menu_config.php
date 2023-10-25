@@ -30,7 +30,7 @@
             <div style="text-align:center">
                 <a href="pantalladeljuego.php"><button type="button" id="saveButton" class="btn btn-primary button2">Guardar Configuración</button></a>
                 &nbsp;&nbsp;
-               <a href="iniciodesesion.php"> <button type="button" id="logoutButton" class="btn btn-primary button3">Salir</button></a>
+               <a href="pantalladeljuego.php"> <button type="button" id="logoutButton" class="btn btn-primary button3">Salir</button></a>
             </div>
         </form>
     </div>  

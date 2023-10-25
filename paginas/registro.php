@@ -51,7 +51,7 @@ include("paginas/controladores/registrate.php");
                     </div>
                     
                 </form>
-                <p class="mt-3">¿No tienes una cuenta? <a href="paginas/iniciosesion.php">Inicia Sesion</a></p>
+                <p class="mt-3">¿Ya tienes una cuenta? <a href="paginas/iniciosesion.php">Inicia Sesion</a></p>
             </div>
         </div>
     </div>
