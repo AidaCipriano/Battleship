@@ -97,15 +97,17 @@ Modelos3D();
  Barco4();
  Barco5();
 
-function detectCollision() {
+ function detectCollision() {
     if (Modelos3dBB.intersectsBox(cube2BB)) {
         console.log('Colisión detectada entre Modelos3D y cube2');
-        objModelos3d.position.x += 0.1;
         
+        // Revierte la posición del modelo al estado anterior a la colisión
+        objModelos3d.position.copy(previousModelPosition);
+        
+        // Actualiza la caja delimitadora del modelo
+        Modelos3dBB.setFromObject(objModelos3d);
     }
-
 }
-
 function init() {
     // Escuchar eventos de teclado para mover "Modelos3D"
     document.addEventListener('keydown', (event) => {
@@ -153,7 +155,9 @@ function animate() {
             isMovingUp = true;
         }
 */
-        Modelos3dBB.setFromObject(objModelos3d);
+previousModelPosition.copy(objModelos3d.position);
+Modelos3dBB.setFromObject(objModelos3d);
+objModelos3d.position.set(modelos3DPosition.x, modelos3DPosition.y, modelos3DPosition.z);
         // Actualiza la posición de cube2 para que siga al modelo
         // cube2.position.copy(objModelos3d.position);
     
